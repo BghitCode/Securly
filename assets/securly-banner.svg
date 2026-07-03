@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Securly by BghitCode</title>
+  <desc id="desc">Security-first agent skill banner for AI chatbots, LLM applications, and autonomous agents.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101828"/>
+      <stop offset="0.52" stop-color="#0f3d3e"/>
+      <stop offset="1" stop-color="#182230"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6ee7b7"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="28" fill="url(#grid)"/>
+
+  <g opacity="0.18">
+    <circle cx="1010" cy="58" r="120" fill="#38bdf8"/>
+    <circle cx="1120" cy="300" r="150" fill="#6ee7b7"/>
+    <circle cx="84" cy="320" r="140" fill="#f97316"/>
+  </g>
+
+  <g transform="translate(72 74)" filter="url(#softShadow)">
+    <path d="M100 0 188 34v72c0 74-42 126-88 148C54 232 12 180 12 106V34L100 0Z" fill="url(#shield)"/>
+    <path d="M100 31 158 54v52c0 48-25 83-58 102-33-19-58-54-58-102V54l58-23Z" fill="#0f172a" opacity="0.88"/>
+    <path d="M76 117 94 135l42-54" fill="none" stroke="#6ee7b7" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(300 72)">
+    <text x="0" y="48" fill="#d1fae5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="2">BGHITCODE</text>
+    <text x="0" y="124" fill="#ffffff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="78" font-weight="800">Securly</text>
+    <text x="0" y="172" fill="#d9f99d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="650">Security-first Agent Skill</text>
+    <text x="0" y="220" fill="#e2e8f0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24">AI agents. LLM chatbots. RAG. Tool calls. Web backends.</text>
+  </g>
+
+  <g transform="translate(870 92)">
+    <rect x="0" y="0" width="244" height="46" rx="23" fill="#ecfeff" opacity="0.94"/>
+    <text x="24" y="30" fill="#0f172a" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800">Prompt Injection</text>
+    <rect x="28" y="70" width="218" height="46" rx="23" fill="#f0fdf4" opacity="0.94"/>
+    <text x="52" y="100" fill="#14532d" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800">Tool Abuse</text>
+    <rect x="-8" y="140" width="252" height="46" rx="23" fill="#fff7ed" opacity="0.94"/>
+    <text x="16" y="170" fill="#7c2d12" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800">OWASP Baseline</text>
+  </g>
+</svg>
