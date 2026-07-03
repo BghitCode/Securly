@@ -1,8 +1,8 @@
-# Securly
+# Securly - Security-first Agent Skill for AI Chatbots, LLMs, and Web Backends
 
 ![Securly banner](assets/securly-banner.svg)
 
-Security-first Agent Skill by **BghitCode** for building and reviewing AI chatbots, LLM applications, autonomous agents, and the web backends behind them.
+Security-first Agent Skill by [**BghitCode**](https://bghitcode.com) for building and reviewing AI chatbots, LLM applications, autonomous agents, and the web backends behind them.
 
 Securly helps coding agents treat security as a build constraint, not a cleanup task. It gives the agent concrete rules for tool authorization, prompt-injection defense, RAG safety, data isolation, file uploads, audit logging, and OWASP web security.
 
