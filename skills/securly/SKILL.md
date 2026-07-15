@@ -1,17 +1,18 @@
 ---
 name: securly
-description: Apply security guidelines when designing, building, or reviewing AI chatbots, LLM-powered apps, and autonomous/tool-using agents — covering agent-specific controls (authorization checks, plan validation, execution limits, audit logging), LLM/prompt security (prompt injection, jailbreaks, RAG sanitization, output validation, PII/secret handling), and OWASP web application security (input validation, injection prevention, auth, headers, rate limiting). Use this skill any time the user is writing system prompts, tool/function definitions, agent orchestration logic, RAG pipelines, chatbot backends, or asks for a security review, threat model, or audit of an AI feature or web endpoint — even if they don't say "security" explicitly (e.g. "add a tool that lets the agent run SQL", "build a file upload endpoint", "let the agent call other agents", "hook up a plugin to the chatbot").
+description: Apply security guidelines when designing, building, or reviewing AI chatbots, LLM-powered apps, autonomous/tool-using agents, and mobile apps (React Native/Expo, Flutter) — covering agent controls (authorization checks, plan validation, execution limits, audit logging), LLM/prompt security (prompt injection, RAG sanitization, output validation, PII/secret handling), OWASP web security (input validation, injection prevention, auth, headers, rate limiting), and mobile security (secure on-device storage, API key handling, certificate pinning, deep links, biometric auth). Use this any time the user writes system prompts, tool definitions, agent orchestration, RAG pipelines, chatbot backends, or mobile app auth/storage code, or asks for a security review or audit — even without saying "security" explicitly (e.g. "let the agent call other agents", "store the auth token in the app", "add a deep link to checkout").
 ---
 
 # Securly
 
-A working reference for building AI chatbots, LLM applications, and autonomous agents that don't fall over the first time someone pokes at them. It covers three layers that stack on top of each other:
+A working reference for building AI chatbots, LLM applications, autonomous agents, and mobile apps that don't fall over the first time someone pokes at them. It covers four layers that stack on top of each other:
 
 1. **Agent-specific security** — controls that only apply once the model can *take actions* (call tools, chain steps, spawn sub-agents).
 2. **LLM/AI security** — controls for any system where untrusted text reaches a model (prompt injection, output trust, RAG, data leakage).
 3. **OWASP web security** — the baseline web app hygiene that still applies because chatbots and agents are ultimately web services with endpoints, sessions, and databases behind them.
+4. **Mobile app security** — controls specific to code running on a device the user (or an attacker) fully controls: secure storage, API key handling, transport security, deep links, biometrics.
 
-Almost every real AI feature touches all three layers. A support chatbot with RAG needs layer 2 and 3. An agent that can browse the web and run code needs all three.
+Almost every real AI feature touches at least two or three of these layers. A support chatbot with RAG needs layer 2 and 3. An agent that can browse the web and run code needs 1 through 3. A mobile app with an embedded AI chat feature needs all four.
 
 ## Why this exists as a skill rather than "just be careful"
 
@@ -33,6 +34,8 @@ The failure mode with AI security isn't usually ignorance of any single rule —
 | A multi-agent system (orchestrator + sub-agents) | Agent security (recursive spawning, budgets, plan validation) + LLM security |
 | A plain web form/endpoint with no LLM in the loop | OWASP only |
 | Anything ingesting user-uploaded files | OWASP (upload restrictions) + LLM security (sanitize before it reaches the prompt) |
+| A React Native/Expo or Flutter app (no AI in it) | Mobile security + OWASP (for the backend API it calls) |
+| A mobile app with an embedded AI chatbot or agent | Mobile security + LLM security + Agent security (if it calls tools) + OWASP (for the backend) |
 
 Don't apply every single guideline to every project indiscriminately — that produces bloated, unreadable code and checklist theater. Instead, identify which attack surface actually exists (does this system have tools? does it touch other users' data? does it take file uploads?) and apply the controls that address that surface. Say explicitly which controls you're skipping and why if a project genuinely doesn't need them (e.g. a single-user local CLI tool doesn't need per-user data isolation).
 
@@ -41,7 +44,8 @@ Don't apply every single guideline to every project indiscriminately — that pr
 - **`references/agent-security.md`** — Controls specific to systems where the model can take actions: tool authorization, plan validation, execution/recursion limits, human-in-the-loop gates, audit logging. Read this whenever tools, function calling, or multi-step agent loops are involved.
 - **`references/llm-security.md`** — Controls for any LLM-in-the-loop system: prompt injection defense, role separation, output validation, RAG sanitization, data isolation between users, PII/secret handling, rate limiting, content moderation. Read this for essentially any AI feature.
 - **`references/owasp-web-security.md`** — Standard web application security baseline (input validation, injection prevention, auth/session security, headers, CSRF, rate limiting). Read this whenever there's an HTTP endpoint involved, which is almost always.
-- **`references/audit-checklist.md`** — A consolidated, skimmable checklist across all three layers, meant for reviewing code someone already wrote rather than designing new code. Use this for "review this for security issues" style requests.
+- **`references/mobile-security.md`** — Controls specific to React Native/Expo and Flutter apps: secure on-device storage, API key handling, transport security and certificate pinning, deep link validation, biometric auth, root/jailbreak detection. Read this whenever the project is a mobile app or a mobile client calling an AI backend.
+- **`references/audit-checklist.md`** — A consolidated, skimmable checklist across all layers, meant for reviewing code someone already wrote rather than designing new code. Use this for "review this for security issues" style requests.
 
 ## A note on threat modeling before checklists
 

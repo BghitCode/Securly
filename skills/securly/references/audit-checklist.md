@@ -52,6 +52,21 @@ Use this for "review this code/feature for security issues" requests. Go through
 - [ ] Security headers are set: CSP, X-Frame-Options, Referrer-Policy
 - [ ] Public endpoints have per-IP and per-user rate limiting
 
+## Mobile app layer
+*(only if the project is a React Native/Expo or Flutter app)*
+
+- [ ] No real API keys or secrets are embedded in app source, `.env` bundled at build time, or platform config files (`app.json`, `Info.plist`, `AndroidManifest.xml`)
+- [ ] Third-party API calls (LLM providers, payments, etc.) route through a backend that holds the real credentials, not directly from the client
+- [ ] Tokens/credentials/PII use secure on-device storage (`expo-secure-store` / `flutter_secure_storage`), not `AsyncStorage`/`SharedPreferences`/unencrypted storage
+- [ ] Cleartext traffic is disabled in release builds (no `usesCleartextTraffic`, no broad `NSAllowsArbitraryLoads`)
+- [ ] Certificate pinning is in place for high-sensitivity apps (payments, health, private data)
+- [ ] Deep link / universal link parameters are validated before being used to navigate, call an API, or render content
+- [ ] Deep links can't be used to bypass authentication into an already-authenticated screen
+- [ ] Biometric auth gates a locally-stored credential; it isn't sent to the server as standalone proof of identity
+- [ ] Release builds strip debug menus, verbose logging, remote JS debugging, and mock endpoints
+- [ ] Exported Android components / iOS URL schemes are scoped to what's actually needed, not broader
+- [ ] If the app embeds an LLM/agent feature, inference and tool-calling run through the backend, not on-device with embedded credentials
+
 ## Severity framing
 
 When reporting findings, distinguish:
